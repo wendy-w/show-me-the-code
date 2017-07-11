@@ -19,21 +19,17 @@ def connet_db():
 		)
 	return conn
 
-def save_keys_to_db(conn,keys):
+def save_keys_to_db(conn):
 	curs = conn.cursor()
 	curs.execute("DROP TABLE IF EXISTS `user_key`")
-	curs.execute("CREATE TABLE `user_key` (`key` varchar(50) NOT NULL)")
-	#curs.execute("INSERT INTO `user_key` VALUES ('345')")
-	curs.executemany("INSERT INTO user_key VALUES (%(value)s)",[dict(value=i) for i in keys])
-	#curs.execute("SELECT * FROM user_key")
-	#result = curs.fetchall()
+	# curs.execute("CREATE TABLE `user_key` (`key` varchar(50) NOT NULL, `id` INT UNSIGNED AUTO_INCREMENT int32)")
+	# curs.execute("INSERT INTO `user_key` VALUES (%(value)s)",[dict(value=i) for i in keys])
+	# curs.execute("SELECT * FROM user_key")
+	# result = curs.fetchall()
 	# printResult(result)
-	conn.commit()
-	conn.close()
-	
     
 if __name__ =="__main__":
     keys = gen_keys(200)
     conn = connet_db()
-    save_keys_to_db(conn,keys)
+    save_keys_to_db(conn)
 
