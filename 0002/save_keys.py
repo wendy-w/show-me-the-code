@@ -22,11 +22,11 @@ def connet_db():
 def save_keys_to_db(conn):
 	curs = conn.cursor()
 	curs.execute("DROP TABLE IF EXISTS `user_key`")
-	# curs.execute("CREATE TABLE `user_key` (`key` varchar(50) NOT NULL, `id` INT UNSIGNED AUTO_INCREMENT int32)")
-	# curs.execute("INSERT INTO `user_key` VALUES (%(value)s)",[dict(value=i) for i in keys])
-	# curs.execute("SELECT * FROM user_key")
-	# result = curs.fetchall()
-	# printResult(result)
+	curs.execute('''CREATE TABLE `user_key` (`key` varchar(50) NOT NULL)''')
+	curs.execute("INSERT INTO `user_key` VALUES (%(value)s)",[dict(value=i) for i in keys])
+	curs.execute("SELECT * FROM user_key")
+	result = curs.fetchall()
+	printResult(result)
     
 if __name__ =="__main__":
     keys = gen_keys(200)
