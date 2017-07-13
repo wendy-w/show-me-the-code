@@ -26,7 +26,7 @@ def save_keys_to_db(conn):
 	curs.execute("INSERT INTO `user_key` VALUES (%(value)s)",[dict(value=i) for i in keys])
 	curs.execute("SELECT * FROM user_key")
 	result = curs.fetchall()
-	printResult(result)
+	printResult(result) #printResult
     
 if __name__ =="__main__":
     keys = gen_keys(200)
